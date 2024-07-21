@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background: #f5f7fa;
+                background: linear-gradient(to right, #f5f7fa, #e2ebf0);
+                color: #333;
+                padding: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                color: #4a4e69;
+                margin-bottom: 20px;
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+                text-align: left;
+                display: inline-block;
+            }
+
+            li {
+                background-color: #ffffff;
+                margin: 10px 0;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            form {
+                margin-top: 20px;
+            }
+
+            button {
+                background-color: #4a4e69;
+                color: #ffffff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: #373f51;
+            }
+
+            a {
+                color: #4a4e69;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                }
+            }
+    </style>
+</head>
+<body>
+    <h1>Cart</h1>
+    <ul>
+        {% for item in cart %}
+            <li>{{ item.name }} - ${{ item.price }}</li>
+        {% endfor %}
+    </ul>
+    <form method="POST" action="{{ url_for('checkout') }}">
+        <button type="submit">Checkout</button>
+    </form>
+    <p><a href="{{ url_for('index') }}">Continue Shopping</a></p>
+</body>
+</html>

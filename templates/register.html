@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(45deg, #ff9a8b, #ff6a88, #ff99ac); /* Vibrant gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+        text-align: center; /* Center the header text */
+        margin-top: 0; /* Remove the top margin to stick it to the top */
+        padding-top: 20px; /* Add some padding at the top if needed */
+        }
+
+        form {
+            background: #ffffff; /* Keep form background white for contrast */
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Add shadow for depth */
+            border-radius: 8px; /* Rounded corners for the form */
+            padding: 20px;
+            width: 90%; /* Adjust form width */
+            max-width: 500px; /* Max width for larger screens */
+        }
+    
+        input[type="text"], input[type="password"], input[type="email"] {
+            border: 2px solid #ff6a88; /* Vibrant border color */
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 24px); /* Adjust width to account for padding */
+            border-radius: 5px; /* Rounded corners for inputs */
+        }
+    
+        button {
+            background-color: #ff6a88; /* Vibrant button color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+    
+        button:hover {
+            background-color: #ff4769; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

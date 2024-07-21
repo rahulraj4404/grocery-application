@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Delivery App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+            :root {
+                --primary-color: #4caf50;
+                --background-color: #121212;
+                --text-color: #e0e0e0;
+                --link-color: #81c784;
+                --hover-link-color: #66bb6a;
+            }
+
+            body {
+                font-family: 'Roboto', sans-serif;
+                background-color: var(--background-color);
+                color: var(--text-color);
+                margin: 0;
+                padding: 20px;
+            }
+
+            a {
+                color: var(--link-color);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            a:hover {
+                color: var(--hover-link-color);
+            }
+
+            h1, h2 {
+                color: var(--primary-color);
+            }
+
+            ul {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+                padding: 0;
+                list-style-type: none;
+            }
+
+            li {
+                background-color: #1e1e1e;
+                padding: 15px;
+                border-radius: 8px;
+                transition: transform 0.3s ease;
+            }
+
+            li:hover {
+                transform: translateY(-5px);
+            }
+
+            @media (max-width: 768px) {
+                ul {
+                    grid-template-columns: 1fr;
+                }
+            }
+    </style>
+</head>
+<body>
+    <h1>Grocery Delivery App</h1>
+    {% if session.user %}
+        <p>Welcome, {{ session.user }}! <a href="{{ url_for('logout') }}">Logout</a></p>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Register</a></p>
+    {% endif %}
+    <h2>Products</h2>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - ${{ product.price }} <a href="{{ url_for('add_to_cart', product_id=product.id) }}">Add to Cart</a></li>
+        {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('cart') }}">View Cart</a></p>
+</body>
+</html>
